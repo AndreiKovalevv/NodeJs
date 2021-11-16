@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <title>Просмотр всех сообщений</title>
+  </head>
+  <body>
+    <nav><a href="/">Регистрация</a> | <a href="/contact">Оставить вопрос</a>| <a href="/message">Все вопросы</a></nav> 
+  <h3>Сообщения</h3>
+  <label  >Последние сообщения</label>
+  <table border=1> <tr><td colspan=3> Все комментарии</td>
+    <tr> <th>Пользователь</th> <th>Комментарий</th> <th>Email</th>
+      {{#each dataRes}} 
+      <tr><th>{{ NameQuestion}}</th> <th>{{Question}}</th><th>{{ QuestionEmail }}</th>
+        {{/each}}
+         
+  </table>
+  </form>
+
+
+  </body>
+</html>

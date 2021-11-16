@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Регистрация</title>
+    <meta charset="utf-8" />
+    <nav><a href="/">Регистрация</a> | <a href="/contact">Оставить вопрос</a>| <a href="/message">Все вопросы</a></nav>
+</head>
+<body>
+    <h1>Введите данные</h1>
+    <form name="registerForm" enctype="multipart/form-data">
+        <label>Имя</label></br>
+        <input type="text" name="userName" /></br></br>
+        <label>Возраст</label></br>
+        <input type="text" name="userAge" /></br></br>     
+        <label>Телефон</label></br>
+        <input type="text" name="userPhone" /></br></br>
+        <label>Email</label></br>
+        <input type="text" name="userEmail" /></br></br>
+        <label>Пол</label></br>
+        <input type="text" name="userGender" /></br></br>
+            <label>Файл</label><br>
+            <input type="file" name="filedata" /><br></br>
+                
+        <button type="submit" id="submit">Отправить</button>
+    
+          </form> 
+    <script>
+
+        document.getElementById("submit").addEventListener("click", function (e) {
+             e.preventDefault();
+            // получаем данные формы
+            let registerForm = document.forms["registerForm"];
+            let userName = registerForm.elements["userName"].value;
+            let userAge = registerForm.elements["userAge"].value;
+            let userPhone = registerForm.elements["userPhone"].value;
+            let userEmail = registerForm.elements["userEmail"].value;
+            let userGender = registerForm.elements["userGender"].value;
+            let filedata = registerForm.elements["filedata"].value;
+            // сериализуем данные в json
+            let user = JSON.stringify({userName: userName, userAge: userAge, userPhone: userPhone, userEmail: userEmail,userGender: userGender,filedata: filedata});
+            let request = new XMLHttpRequest();
+            // посылаем запрос на адрес "/user"
+             request.open("POST", "/user", true);   
+             request.setRequestHeader("Content-Type", "application/json");
+             request.addEventListener("load", function () {
+                // получаем и парсим ответ сервера
+                 let receivedUser = JSON.parse(request.response);
+                 console.log("1");   // смотрим ответ сервера
+             });
+             request.send(user);
+         });
+    </script>
+</body>
+<html>
